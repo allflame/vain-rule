@@ -6,20 +6,12 @@
  * Time: 12:58 PM
  */
 
-namespace Vain\Expression\Evaluator;
+namespace Vain\Rule\Evaluator;
 
-use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 
 interface EvaluatorInterface extends VisitorInterface
 {
-    /**
-     * @param ExpressionInterface $expression
-     *
-     * @return EvaluatorInterface
-     */
-    public function withExpression(ExpressionInterface $expression);
-
     /**
      * @param \ArrayAccess $context
      *

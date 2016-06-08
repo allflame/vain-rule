@@ -6,19 +6,20 @@
  * Time: 6:29 PM
  */
 
-namespace Vain\Expression\Exception;
+namespace Vain\Rule\Exception;
 
-use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Expression\Unary\Property\PropertyExpression;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 
-class UnknownPropertyException extends DescriptorException
+class UnknownPropertyException extends ExpressionEvaluatorException
 {
     /**
      * UnknownPropertyException constructor.
-     * @param DescriptorInterface $descriptor
-     * @param string $name
+     * @param EvaluatorInterface $evaluator
+     * @param PropertyExpression $expression
      */
-    public function __construct(DescriptorInterface $descriptor, $name)
+    public function __construct(EvaluatorInterface $evaluator, PropertyExpression $expression)
     {
-        parent::__construct($descriptor, sprintf('Property %s not found in data', $name), 0, null);
+        parent::__construct($evaluator, $expression, sprintf('Property %s not found in data', $expression->getProperty()), 0, null);
     }
 }

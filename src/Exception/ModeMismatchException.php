@@ -6,21 +6,32 @@
  * Time: 11:19 PM
  */
 
-namespace Vain\Expression\Exception;
+namespace Vain\Rule\Exception;
 
-
-use Vain\Expression\Evaluator\EvaluatorInterface;
+use Vain\Expression\Unary\Mode\ModeExpression;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 
 class ModeMismatchException extends ExpressionEvaluatorException
 {
+    private $mode;
+
     /**
-     * ModeMismatchExpressionEvaluatorException constructor.
+     * ModeMismatchException constructor.
      * @param EvaluatorInterface $evaluator
-     * @param string $mode1
-     * @param string $mode2
+     * @param ModeExpression $expression
+     * @param string $mode
      */
-    public function __construct(EvaluatorInterface $evaluator, $mode1, $mode2)
+    public function __construct(EvaluatorInterface $evaluator, ModeExpression $expression, $mode)
     {
-        parent::__construct($evaluator, sprintf('Unable to compare values with different modes %s and %s', $mode1, $mode2), 0, null);
+        $this->mode = $mode;
+        parent::__construct($evaluator, $expression, sprintf('Unable to compare values with different modes %s and %s', $expression->getMode(), $mode), 0, null);
+    }
+
+    /**
+     * @return string
+     */
+    public function getMode()
+    {
+        return $this->mode;
     }
 }

@@ -6,23 +6,26 @@
  * Time: 11:43 AM
  */
 
-namespace Vain\Expression\Exception;
+namespace Vain\Rule\Exception;
 
-use Vain\Expression\Descriptor\DescriptorInterface;
 
-class InaccessibleFilterException extends DescriptorException
+use Vain\Expression\ExpressionInterface;
+use Vain\Rule\Evaluator\EvaluatorInterface;
+
+class InaccessibleFilterException extends ExpressionEvaluatorException
 {
     private $value;
 
     /**
-     * InaccessibleFilterDescriptorException constructor.
-     * @param DescriptorInterface $descriptor
-     * @param object $value
+     * InaccessibleFilterException constructor.
+     * @param EvaluatorInterface $evaluator
+     * @param ExpressionInterface $expression
+     * @param string $value
      */
-    public function __construct(DescriptorInterface $descriptor, $value)
+    public function __construct(EvaluatorInterface $evaluator, ExpressionInterface $expression, $value)
     {
         $this->value = $value;
-        parent::__construct($descriptor, sprintf('Cannot apply filter for non-traversable object'), 0, null);
+        parent::__construct($evaluator, $expression, sprintf('Cannot apply filter for non-traversable object'), 0, null);
     }
 
     /**

@@ -6,25 +6,26 @@
  * Time: 10:36 AM
  */
 
-namespace Vain\Expression\Exception;
+namespace Vain\Rule\Exception;
 
+use Vain\Expression\ExpressionInterface;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 
-use Vain\Expression\Descriptor\DescriptorInterface;
-
-class InaccessiblePropertyException extends DescriptorException
+class InaccessiblePropertyException extends ExpressionEvaluatorException
 {
 
     private $value;
 
     /**
-     * InaccessiblePropertyDescriptorException constructor.
-     * @param DescriptorInterface $descriptor
-     * @param mixed $value
+     * InaccessiblePropertyException constructor.
+     * @param EvaluatorInterface $evaluator
+     * @param ExpressionInterface $expression
+     * @param string $value
      */
-    public function __construct(DescriptorInterface $descriptor, $value)
+    public function __construct(EvaluatorInterface $evaluator, ExpressionInterface $expression, $value)
     {
         $this->value = $value;
-        parent::__construct($descriptor, sprintf('Cannot get property for unsupported value type %s', gettype($value)), 0, null);
+        parent::__construct($evaluator, $expression, sprintf('Cannot get property for unsupported value type %s', gettype($value)), 0, null);
     }
 
     /**
