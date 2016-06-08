@@ -6,19 +6,20 @@
  * Time: 12:29 PM
  */
 
-namespace Vain\Expression\Exception;
+namespace Vain\Rule\Exception;
 
-use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Expression\Unary\FunctionX\FunctionExpression;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 
-class UnknownFunctionException extends DescriptorException
+class UnknownFunctionException extends ExpressionEvaluatorException
 {
     /**
-     * UnknownFunctionDescriptorException constructor.
-     * @param DescriptorInterface $descriptor
-     * @param string $functionName
+     * UnknownFunctionException constructor.
+     * @param EvaluatorInterface $evaluator
+     * @param FunctionExpression $expression
      */
-    public function __construct(DescriptorInterface $descriptor, $functionName)
+    public function __construct(EvaluatorInterface $evaluator, FunctionExpression $expression)
     {
-        parent::__construct($descriptor, sprintf('Function %s is not registered', $functionName), 0, null);
+        parent::__construct($evaluator, $expression, sprintf('Function %s is not registered', $expression->getFunctionName()), 0, null);
     }
 }

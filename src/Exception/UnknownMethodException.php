@@ -6,19 +6,20 @@
  * Time: 6:31 PM
  */
 
-namespace Vain\Expression\Exception;
+namespace Vain\Rule\Exception;
 
-use Vain\Expression\Descriptor\DescriptorInterface;
+use Vain\Expression\Unary\Method\MethodExpression;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 
-class UnknownMethodException extends DescriptorException
+class UnknownMethodException extends ExpressionEvaluatorException
 {
     /**
-     * UnknownMethodDescriptorException constructor.
-     * @param DescriptorInterface $descriptor
-     * @param string $method
+     * UnknownMethodException constructor.
+     * @param EvaluatorInterface $evaluator
+     * @param MethodExpression $expression
      */
-    public function __construct(DescriptorInterface $descriptor, $method)
+    public function __construct(EvaluatorInterface $evaluator, MethodExpression $expression)
     {
-        parent::__construct($descriptor, sprintf('Method %s does not exists in data', $method), 0, null);
+        parent::__construct($evaluator, $expression, sprintf('Method %s does not exists in data', $expression->getMethod()), 0, null);
     }
 }

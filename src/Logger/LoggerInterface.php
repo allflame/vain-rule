@@ -6,10 +6,10 @@
  * Time: 10:32 AM
  */
 
-namespace Vain\Expression\Logger;
+namespace Vain\Rule\Logger;
 
 use Vain\Core\Result\ResultInterface;
-use Vain\Expression\Evaluator\EvaluatorInterface;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 
 interface LoggerInterface

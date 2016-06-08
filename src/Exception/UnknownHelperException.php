@@ -6,21 +6,20 @@
  * Time: 11:38 AM
  */
 
-namespace Vain\Expression\Exception;
+namespace Vain\Rule\Exception;
 
+use Vain\Expression\Unary\Helper\HelperExpression;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 
-use Vain\Expression\Descriptor\DescriptorInterface;
-
-class UnknownHelperException extends DescriptorException
+class UnknownHelperException extends ExpressionEvaluatorException
 {
     /**
-     * UnknownFunctionDescriptorException constructor.
-     * @param DescriptorInterface $descriptor
-     * @param string $class
-     * @param string $method
+     * UnknownHelperException constructor.
+     * @param EvaluatorInterface $evaluator
+     * @param HelperExpression $expression
      */
-    public function __construct(DescriptorInterface $descriptor, $class, $method)
+    public function __construct(EvaluatorInterface $evaluator, HelperExpression $expression)
     {
-        parent::__construct($descriptor, sprintf('Helper method %s::%s is not registered', $class, $method), 0, null);
+        parent::__construct($evaluator, $expression, sprintf('Helper method %s::%s is not registered', $expression->getClass(), $expression->getMethod()), 0, null);
     }
 }

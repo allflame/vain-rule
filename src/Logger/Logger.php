@@ -6,12 +6,11 @@
  * Time: 9:08 PM
  */
 
-namespace Logger;
+namespace Vain\Rule\Logger;
 
 use Vain\Core\Result\ResultInterface;
-use Vain\Expression\Evaluator\EvaluatorInterface;
+use Vain\Rule\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Logger\LoggerInterface;
 use Psr\Log\LoggerInterface as PsrLoggerInterface;
 
 class Logger implements LoggerInterface
