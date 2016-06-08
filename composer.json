@@ -23,19 +23,19 @@
     "repositories": [
         {
             "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-core.git"
+            "url": "https://github.com/allflame/vain-core.git"
         },
         {
             "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-http.git"
+            "url": "https://github.com/allflame/vain-data.git"
         },
         {
             "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-comparator.git"
+            "url": "https://github.com/allflame/vain-http.git"
         },
         {
             "type": "git",
-            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-logger.git"
+            "url": "https://github.com/allflame/vain-comparator.git"
         },
         {
             "type": "git",
