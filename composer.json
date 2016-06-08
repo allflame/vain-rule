@@ -1,11 +1,11 @@
 {
-    "name": "vain/expression",
+    "name": "vain/rule",
     "type": "shared-package",
     "authors": [
         {
             "name": "Taras Girnyk",
             "email": "taras.p.gyrnik@gmail.com",
-            "homepage": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-expression",
+            "homepage": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-rule",
             "role": "Developer"
         }
     ],
@@ -17,6 +17,7 @@
     "require": {
         "php": ">=5.6.0",
         "vain/logger" : "dev-master",
+        "vain/expression" : "dev-master",
         "vain/comparator" : "dev-master"
     },
     "repositories": [
@@ -35,6 +36,10 @@
         {
             "type": "git",
             "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-logger.git"
+        },
+        {
+            "type": "git",
+            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-expression.git"
         },
         {
             "type": "git",
