@@ -18,6 +18,7 @@
         "php": ">=5.6.0",
         "vain/logger" : "dev-dev",
         "vain/expression" : "dev-dev",
+        "vain/data" : "dev-dev",
         "vain/comparator" : "dev-dev"
     },
     "repositories": [
@@ -27,11 +28,19 @@
         },
         {
             "type": "git",
+            "url": "http://gitlab.cosmonova.net.ua/taras.girnyk/vain-data.git"
+        },
+        {
+            "type": "git",
             "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-http.git"
         },
         {
             "type": "git",
             "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-comparator.git"
+        },
+        {
+            "type": "git",
+            "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-expression.git"
         },
         {
             "type": "git",

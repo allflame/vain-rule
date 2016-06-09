@@ -10,6 +10,7 @@ namespace Vain\Rule\Evaluator;
 
 use Vain\Comparator\Repository\ComparatorRepositoryInterface;
 use Vain\Comparator\Result\ComparableResult;
+use Vain\Data\Module\Repository\ModuleRepositoryInterface;
 use Vain\Expression\Boolean\AndX\AndExpression;
 use Vain\Expression\Boolean\Equal\EqualExpression;
 use Vain\Expression\Boolean\Greater\GreaterExpression;
@@ -43,17 +44,21 @@ use Vain\Rule\Exception\UnknownPropertyException;
 class Evaluator implements EvaluatorInterface
 {
 
+    private $moduleRepository;
+
     private $comparatorRepository;
 
     private $context;
 
     /**
      * ExpressionEvaluator constructor.
+     * @param ModuleRepositoryInterface $moduleRepository
      * @param ComparatorRepositoryInterface $comparatorRepository
      * @param \ArrayAccess $context
      */
-    public function __construct(ComparatorRepositoryInterface $comparatorRepository, \ArrayAccess $context = null)
+    public function __construct(ModuleRepositoryInterface $moduleRepository, ComparatorRepositoryInterface $comparatorRepository, \ArrayAccess $context = null)
     {
+        $this->moduleRepository = $moduleRepository;
         $this->comparatorRepository = $comparatorRepository;
         $this->context = $context;
     }
@@ -71,7 +76,7 @@ class Evaluator implements EvaluatorInterface
      */
     public function module(ModuleExpression $moduleExpression)
     {
-        return $moduleExpression->getModule()->getData($this->context);
+        return $this->moduleRepository->getModule($moduleExpression->getExpression()->accept($this))->getData($this->context);
     }
 
     /**
