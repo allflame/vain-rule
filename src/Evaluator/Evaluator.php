@@ -323,15 +323,16 @@ class Evaluator implements EvaluatorInterface
         $firstResult = $binaryExpression->getFirstExpression()->accept($this);
         $secondResult = $binaryExpression->getFirstExpression()->accept($this);
 
-        if (false === $firstResult->getStatus()) {
-            return new ComparableResult(false);
-        }
-
-        if (false === $secondResult->getStatus()) {
-            return new ComparableResult(false);
-        }
-
-        return new ComparableResult(true);
+        return new CompositeResult($firstResult && $secondResult, new AndExpression($firstResult, $secondResult));
+//        if (false === $firstResult->getStatus()) {
+//            return new ComparableResult(false);
+//        }
+//
+//        if (false === $secondResult->getStatus()) {
+//            return new ComparableResult(false);
+//        }
+//
+//        return new ComparableResult(true);
     }
 
     /**
@@ -342,11 +343,13 @@ class Evaluator implements EvaluatorInterface
         $firstResult = $binaryExpression->getFirstExpression()->accept($this);
         $secondResult = $binaryExpression->getFirstExpression()->accept($this);
 
-        if (false === $firstResult->getStatus() && false === $secondResult->getStatus()) {
-            return new ComparableResult(false);
-        }
-
-        return new ComparableResult(true);
+        return new CompositeResult($firstResult->getStatus() || $secondResult->getStatus(), new AndExpression($firstResult, $secondResult));
+//
+//        if (false === $firstResult->getStatus() && false === $secondResult->getStatus()) {
+//            return new ComparableResult(false);
+//        }
+//
+//        return new ComparableResult(true);
     }
 
     /**
