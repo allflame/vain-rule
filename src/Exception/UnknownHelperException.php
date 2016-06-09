@@ -8,7 +8,7 @@
 
 namespace Vain\Rule\Exception;
 
-use Vain\Expression\Unary\Helper\HelperExpression;
+use Vain\Expression\NonTerminal\Helper\HelperExpression;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 
 class UnknownHelperException extends ExpressionEvaluatorException

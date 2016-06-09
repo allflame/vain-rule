@@ -8,7 +8,7 @@
 
 namespace Vain\Rule\Exception;
 
-use Vain\Expression\Unary\Method\MethodExpression;
+use Vain\Expression\NonTerminal\Method\MethodExpression;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 
 class UnknownMethodException extends ExpressionEvaluatorException

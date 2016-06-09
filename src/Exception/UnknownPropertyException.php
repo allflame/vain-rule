@@ -8,7 +8,7 @@
 
 namespace Vain\Rule\Exception;
 
-use Vain\Expression\Unary\Property\PropertyExpression;
+use Vain\Expression\NonTerminal\Property\PropertyExpression;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 
 class UnknownPropertyException extends ExpressionEvaluatorException

@@ -8,7 +8,6 @@
 
 namespace Vain\Rule\Logger;
 
-use Vain\Core\Result\ResultInterface;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 use Psr\Log\LoggerInterface as PsrLoggerInterface;
@@ -37,7 +36,7 @@ class Logger implements LoggerInterface
     /**
      * @inheritDoc
      */
-    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, ResultInterface $result)
+    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, $result)
     {
         if (false === $result->getStatus()) {
             $this->logger->debug(sprintf('Finished evaluating expression %s with evaluator %s: FALSE', get_class($expression), get_class($evaluator)));

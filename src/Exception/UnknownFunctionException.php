@@ -8,7 +8,7 @@
 
 namespace Vain\Rule\Exception;
 
-use Vain\Expression\Unary\FunctionX\FunctionExpression;
+use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 
 class UnknownFunctionException extends ExpressionEvaluatorException
