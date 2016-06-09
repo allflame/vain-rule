@@ -29,4 +29,4 @@ abstract class AbstractEvaluatorDecorator extends AbstractVisitorDecorator imple
     {
         return $this->getVisitor()->withContext($context);
     }
-}
+} 
