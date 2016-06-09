@@ -1,4 +1,4 @@
 services:
     rule.evaluator:
-        class: Vain\Phalcon\Di\Symfony\SymfonyContainerAdapter
+        class: Vain\Rule\Evaluator\Evaluator
         arguments: ['@data.module.repository', '@comparator.repository']
