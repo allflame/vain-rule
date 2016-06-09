@@ -25,8 +25,8 @@ use Vain\Expression\Boolean\False\FalseExpression;
 use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Boolean\Not\NotExpression;
+use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
-use Vain\Expression\Terminal\Local\LocalExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
 use Vain\Expression\NonTerminal\Filter\FilterExpression;
 use Vain\Expression\NonTerminal\FunctionX\FunctionExpression;
@@ -82,7 +82,7 @@ class Evaluator implements EvaluatorInterface
     /**
      * @inheritDoc
      */
-    public function local(LocalExpression $localExpression)
+    public function context(ContextExpression $contextExpression)
     {
         return $this->context;
     }
