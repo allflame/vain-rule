@@ -1,0 +1,4 @@
+services:
+    rule.evaluator:
+        class: Vain\Phalcon\Di\Symfony\SymfonyContainerAdapter
+        arguments: ['@module.repository', '@comparator.repository']
