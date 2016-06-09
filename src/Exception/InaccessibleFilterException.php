@@ -8,7 +8,6 @@
 
 namespace Vain\Rule\Exception;
 
-
 use Vain\Expression\ExpressionInterface;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 

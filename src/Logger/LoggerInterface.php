@@ -8,7 +8,6 @@
 
 namespace Vain\Rule\Logger;
 
-use Vain\Core\Result\ResultInterface;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 use Vain\Expression\ExpressionInterface;
 
@@ -25,9 +24,9 @@ interface LoggerInterface
     /**
      * @param ExpressionInterface $expression
      * @param EvaluatorInterface $evaluator
-     * @param ResultInterface $result
+     * @param mixed $result
      *
      * @return LoggerInterface
      */
-    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, ResultInterface $result);
+    public function afterEvaluation(ExpressionInterface $expression, EvaluatorInterface $evaluator, $result);
 }

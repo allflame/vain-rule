@@ -8,7 +8,7 @@
 
 namespace Vain\Rule\Exception;
 
-use Vain\Expression\Unary\Mode\ModeExpression;
+use Vain\Expression\NonTerminal\Mode\ModeExpression;
 use Vain\Rule\Evaluator\EvaluatorInterface;
 
 class ModeMismatchException extends ExpressionEvaluatorException
