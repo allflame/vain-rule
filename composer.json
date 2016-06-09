@@ -17,7 +17,12 @@
     "require": {
         "php": ">=5.6.0",
         "vain/logger" : "dev-dev",
+<<<<<<< ae265f8b70d70baa6952b40cb34812ace46e5cb1
         "vain/expression" : "dev-dev"
+=======
+        "vain/expression" : "dev-dev",
+        "vain/comparator" : "dev-dev"
+>>>>>>> Switched branches
     },
     "repositories": [
         {
