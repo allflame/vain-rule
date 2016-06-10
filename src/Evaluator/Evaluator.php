@@ -9,7 +9,7 @@
 namespace Vain\Rule\Evaluator;
 
 use Vain\Comparator\Repository\ComparatorRepositoryInterface;
-use Vain\Comparator\Result\ComparableResult;
+use Vain\Comparator\Result\ComparatorResult;
 use Vain\Data\Module\Repository\ModuleRepositoryInterface;
 use Vain\Expression\Boolean\AndX\AndExpression;
 use Vain\Expression\Boolean\Equal\EqualExpression;
@@ -41,7 +41,6 @@ use Vain\Rule\Exception\UnknownFunctionException;
 use Vain\Rule\Exception\UnknownHelperException;
 use Vain\Rule\Exception\UnknownMethodException;
 use Vain\Rule\Exception\UnknownPropertyException;
-use Vain\Rule\Result\RuleResult;
 
 class Evaluator implements EvaluatorInterface
 {
@@ -333,7 +332,15 @@ class Evaluator implements EvaluatorInterface
         $firstResult = $binaryExpression->getFirstExpression()->accept($this);
         $secondResult = $binaryExpression->getFirstExpression()->accept($this);
 
-        return new RuleResult( new AndExpression($firstResult, $secondResult));
+        if (false == $firstResult->getStatus()) {
+            return $firstResult;
+        }
+
+        if (false === $secondResult->getStatus()) {
+            return $secondResult;
+        }
+
+        return $firstResult;
     }
 
     /**
@@ -344,7 +351,15 @@ class Evaluator implements EvaluatorInterface
         $firstResult = $binaryExpression->getFirstExpression()->accept($this);
         $secondResult = $binaryExpression->getFirstExpression()->accept($this);
 
-        return new CompositeResult($firstResult->getStatus() || $secondResult->getStatus(), new AndExpression($firstResult, $secondResult));
+        if ($firstResult->getStatus()) {
+            return $firstResult;
+        }
+
+        if ($secondResult->getStatus()) {
+            return $secondResult;
+        }
+
+        return $firstResult;
     }
 
     /**
@@ -352,7 +367,7 @@ class Evaluator implements EvaluatorInterface
      */
     public function true(TrueExpression $expression)
     {
-        return new ComparableResult(true);
+        return new ComparatorResult(true);
     }
 
     /**
@@ -360,7 +375,7 @@ class Evaluator implements EvaluatorInterface
      */
     public function false(FalseExpression $expression)
     {
-        return new ComparableResult(false);
+        return new ComparatorResult(false);
     }
 
     /**
