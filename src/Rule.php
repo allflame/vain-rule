@@ -10,6 +10,7 @@ namespace Vain\Rule;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Rule\Result\RuleResult;
 
 class Rule implements RuleInterface
 {
@@ -41,7 +42,7 @@ class Rule implements RuleInterface
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $this->expression->accept($visitor);
+        return new RuleResult($this, $this->expression->accept($visitor));
     }
 
     /**
