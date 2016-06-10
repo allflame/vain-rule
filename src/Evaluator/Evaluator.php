@@ -25,6 +25,7 @@ use Vain\Expression\Boolean\False\FalseExpression;
 use Vain\Expression\Boolean\True\TrueExpression;
 use Vain\Expression\Boolean\Identity\IdentityExpression;
 use Vain\Expression\Boolean\Not\NotExpression;
+use Vain\Expression\Result\ResultExpressionInterface;
 use Vain\Expression\Terminal\Context\ContextExpression;
 use Vain\Expression\Terminal\InPlace\InPlaceExpression;
 use Vain\Expression\NonTerminal\Module\ModuleExpression;
@@ -40,6 +41,7 @@ use Vain\Rule\Exception\UnknownFunctionException;
 use Vain\Rule\Exception\UnknownHelperException;
 use Vain\Rule\Exception\UnknownMethodException;
 use Vain\Rule\Exception\UnknownPropertyException;
+use Vain\Rule\Result\RuleResult;
 
 class Evaluator implements EvaluatorInterface
 {
@@ -61,6 +63,14 @@ class Evaluator implements EvaluatorInterface
         $this->moduleRepository = $moduleRepository;
         $this->comparatorRepository = $comparatorRepository;
         $this->context = $context;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function result(ResultExpressionInterface $resultExpression)
+    {
+        return $resultExpression->getStatus();
     }
 
     /**
@@ -186,7 +196,7 @@ class Evaluator implements EvaluatorInterface
 
         $filteredData = [];
         foreach ($dataToFilter as $singleElement) {
-            if (false === $filterExpression->accept($this->withContext($singleElement))->getStatus()) {
+            if (false === $filterExpression->getFilterExpression()->accept($this->withContext($singleElement))->getStatus()) {
                 continue;
             }
             $filteredData[] = $singleElement;
@@ -323,16 +333,7 @@ class Evaluator implements EvaluatorInterface
         $firstResult = $binaryExpression->getFirstExpression()->accept($this);
         $secondResult = $binaryExpression->getFirstExpression()->accept($this);
 
-        return new CompositeResult($firstResult && $secondResult, new AndExpression($firstResult, $secondResult));
-//        if (false === $firstResult->getStatus()) {
-//            return new ComparableResult(false);
-//        }
-//
-//        if (false === $secondResult->getStatus()) {
-//            return new ComparableResult(false);
-//        }
-//
-//        return new ComparableResult(true);
+        return new RuleResult( new AndExpression($firstResult, $secondResult));
     }
 
     /**
@@ -344,12 +345,6 @@ class Evaluator implements EvaluatorInterface
         $secondResult = $binaryExpression->getFirstExpression()->accept($this);
 
         return new CompositeResult($firstResult->getStatus() || $secondResult->getStatus(), new AndExpression($firstResult, $secondResult));
-//
-//        if (false === $firstResult->getStatus() && false === $secondResult->getStatus()) {
-//            return new ComparableResult(false);
-//        }
-//
-//        return new ComparableResult(true);
     }
 
     /**
