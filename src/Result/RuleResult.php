@@ -8,45 +8,29 @@
 
 namespace Vain\Rule\Result;
 
-use Vain\Comparator\Result\ComparableResultInterface;
+use Vain\Comparator\Result\ComparatorResultInterface;
 use Vain\Core\Result\AbstractResult;
 use Vain\Core\Result\ResultInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
 use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Rule\RuleInterface;
 
 class RuleResult extends AbstractResult implements ResultInterface, ExpressionInterface
 {
-    private $comparableResult;
+    private $rule;
 
-    private $expression;
+    private $result;
 
     /**
      * RuleResult constructor.
-     * @param ComparableResultInterface $comparableResult
-     * @param ExpressionInterface $expression
+     * @param RuleInterface $rule
+     * @param ComparatorResultInterface $result
      */
-    public function __construct(ComparableResultInterface $comparableResult, ExpressionInterface $expression)
+    public function __construct(RuleInterface $rule, ComparatorResultInterface $result)
     {
-        $this->comparableResult = $comparableResult;
-        $this->expression = $expression;
-        parent::__construct($comparableResult->getStatus());
-    }
-
-    /**
-     * @return ComparableResultInterface
-     */
-    public function getComparableResult()
-    {
-        return $this->comparableResult;
-    }
-
-    /**
-     * @return ExpressionInterface
-     */
-    public function getExpression()
-    {
-        return $this->expression;
+        $this->rule = $rule;
+        $this->result = $result;
+        parent::__construct($result->getStatus());
     }
 
     /**
@@ -54,17 +38,25 @@ class RuleResult extends AbstractResult implements ResultInterface, ExpressionIn
      */
     public function accept(VisitorInterface $visitor)
     {
-        return $visitor->result($this->comparableResult);
+        return $this->result->accept($visitor);
     }
 
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serializedData)
+    public function serialize()
     {
-        list ($comparableResultData, $expressionData) = $serializedData;
-        $this->comparableResult = $serializer->unserializeExpression($comparableResultData);
-        $this->expression = $serializer->unserializeExpression($expressionData);
+        return json_encode(['rule' => serialize($this->rule), 'result' => serialize($this->result)]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        $serializedData = json_decode($serialized);
+        $this->rule = unserialize($serializedData->rule);
+        $this->result = unserialize($serializedData->result);
 
         return $this;
     }
