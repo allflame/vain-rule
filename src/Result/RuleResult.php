@@ -8,14 +8,12 @@
 
 namespace Vain\Rule\Result;
 
-use Vain\Comparator\Result\ComparatorResultInterface;
 use Vain\Core\Result\AbstractResult;
-use Vain\Core\Result\ResultInterface;
-use Vain\Expression\ExpressionInterface;
+use Vain\Expression\Result\ResultExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 use Vain\Rule\RuleInterface;
 
-class RuleResult extends AbstractResult implements ResultInterface, ExpressionInterface
+class RuleResult extends AbstractResult implements ResultExpressionInterface
 {
     private $rule;
 
@@ -24,13 +22,13 @@ class RuleResult extends AbstractResult implements ResultInterface, ExpressionIn
     /**
      * RuleResult constructor.
      * @param RuleInterface $rule
-     * @param ComparatorResultInterface $result
+     * @param ResultExpressionInterface $resultExpression
      */
-    public function __construct(RuleInterface $rule, ComparatorResultInterface $result)
+    public function __construct(RuleInterface $rule, ResultExpressionInterface $resultExpression)
     {
         $this->rule = $rule;
-        $this->result = $result;
-        parent::__construct($result->getStatus());
+        $this->result = $resultExpression;
+        parent::__construct($resultExpression->getStatus());
     }
 
     /**

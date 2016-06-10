@@ -9,6 +9,7 @@
 namespace Vain\Rule;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
+use Vain\Expression\ExpressionInterface;
 
 interface RuleInterface extends BooleanExpressionInterface
 {
@@ -16,4 +17,9 @@ interface RuleInterface extends BooleanExpressionInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * @return ExpressionInterface
+     */
+    public function getExpression();
 }
