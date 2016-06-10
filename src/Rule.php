@@ -10,12 +10,12 @@ namespace Vain\Rule;
 
 use Vain\Expression\ExpressionInterface;
 use Vain\Expression\Visitor\VisitorInterface;
-use Vain\Rule\Result\RuleResult;
+use Vain\Rule\Visitor\RuleVisitorInterface;
 
 class Rule implements RuleInterface
 {
     private $name;
-    
+
     private $expression;
 
     /**
@@ -38,11 +38,19 @@ class Rule implements RuleInterface
     }
 
     /**
-     * @inheritDoc
+     * @return ExpressionInterface
+     */
+    public function getExpression()
+    {
+        return $this->expression;
+    }
+
+    /**
+     * @param RuleVisitorInterface $visitor
      */
     public function accept(VisitorInterface $visitor)
     {
-        return new RuleResult($this, $this->expression->accept($visitor));
+        return $visitor->rule($this);
     }
 
     /**

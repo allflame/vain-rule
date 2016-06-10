@@ -8,9 +8,11 @@
 
 namespace Vain\Rule\Evaluator;
 
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Rule\Result\RuleResult;
+use Vain\Rule\RuleInterface;
+use Vain\Rule\Visitor\RuleVisitorInterface;
 
-interface EvaluatorInterface extends VisitorInterface
+interface EvaluatorInterface extends RuleVisitorInterface
 {
     /**
      * @param \ArrayAccess $context
@@ -18,4 +20,11 @@ interface EvaluatorInterface extends VisitorInterface
      * @return EvaluatorInterface
      */
     public function withContext(\ArrayAccess $context = null);
+
+    /**
+     * @param RuleInterface $rule
+     *
+     * @return RuleResult
+     */
+    public function rule(RuleInterface $rule);
 }

@@ -41,6 +41,8 @@ use Vain\Rule\Exception\UnknownFunctionException;
 use Vain\Rule\Exception\UnknownHelperException;
 use Vain\Rule\Exception\UnknownMethodException;
 use Vain\Rule\Exception\UnknownPropertyException;
+use Vain\Rule\Result\RuleResult;
+use Vain\Rule\RuleInterface;
 
 class Evaluator implements EvaluatorInterface
 {
@@ -322,6 +324,14 @@ class Evaluator implements EvaluatorInterface
         $againstValue = $comparisonExpression->getSecondExpression()->accept($this);
 
         return $this->comparatorRepository->getComparator(gettype($whatValue))->like($whatValue, $againstValue);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function rule(RuleInterface $rule)
+    {
+        return new RuleResult($rule, $rule->getExpression()->accept($this));
     }
 
     /**
