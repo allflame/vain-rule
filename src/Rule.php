@@ -9,7 +9,7 @@
 namespace Vain\Rule;
 
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Serializer\SerializerInterface;
+use Vain\Expression\Visitor\VisitorInterface;
 
 class Rule implements RuleInterface
 {
@@ -31,10 +31,35 @@ class Rule implements RuleInterface
     /**
      * @inheritDoc
      */
-    public function unserialize(SerializerInterface $serializer, array $serializedData)
+    public function getName()
     {
-        list ($this->name, $expressionData) = $serializedData;
-        $this->expression = $serializer->unserializeExpression($expressionData);
+        return $this->name;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function accept(VisitorInterface $visitor)
+    {
+        return $this->expression->accept($visitor);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function serialize()
+    {
+        return json_encode(['name' => $this->name, 'expression' => serialize($this->expression)]);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function unserialize($serialized)
+    {
+        $serializedData = json_decode($serialized);
+        $this->name = $serializedData->name;
+        $this->expression = unserialize($serializedData->expression);
 
         return $this;
     }
