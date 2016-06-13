@@ -37,7 +37,7 @@ use Vain\Rule\Result\RuleResult;
 use Vain\Rule\RuleInterface;
 use Vain\Rule\Visitor\RuleVisitorInterface;
 
-class RuleEvaluator implements RuleVisitorInterface, InterpreterInterface
+class Evaluator implements RuleVisitorInterface, InterpreterInterface
 {
     private $interpreter;
 
