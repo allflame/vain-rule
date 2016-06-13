@@ -8,12 +8,11 @@
 
 namespace Vain\Rule\Result;
 
-use Vain\Core\Result\AbstractResult;
-use Vain\Expression\Result\ResultExpressionInterface;
+use Vain\Expression\Result\ExpressionResultInterface;
 use Vain\Expression\Visitor\VisitorInterface;
 use Vain\Rule\RuleInterface;
 
-class RuleResult extends AbstractResult implements ResultExpressionInterface
+class RuleResult implements ExpressionResultInterface
 {
     private $rule;
 
@@ -22,13 +21,47 @@ class RuleResult extends AbstractResult implements ResultExpressionInterface
     /**
      * RuleResult constructor.
      * @param RuleInterface $rule
-     * @param ResultExpressionInterface $resultExpression
+     * @param ExpressionResultInterface $expressionResult
      */
-    public function __construct(RuleInterface $rule, ResultExpressionInterface $resultExpression)
+    public function __construct(RuleInterface $rule, ExpressionResultInterface $expressionResult)
     {
         $this->rule = $rule;
-        $this->result = $resultExpression;
-        parent::__construct($resultExpression->getStatus());
+        $this->result = $expressionResult;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function isSuccessful()
+    {
+        return $this->result->isSuccessful();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getStatus()
+    {
+        return $this->result->getStatus();
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function invert()
+    {
+        $copy = clone $this;
+        $this->result = $copy->result->invert();
+
+        return $copy;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function __toString()
+    {
+        return $this->result->__toString();
     }
 
     /**
