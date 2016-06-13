@@ -37,7 +37,7 @@ use Vain\Rule\Result\RuleResult;
 use Vain\Rule\RuleInterface;
 use Vain\Rule\Visitor\RuleVisitorInterface;
 
-class RuleEvaluator implements RuleVisitorInterface
+class RuleEvaluator implements RuleVisitorInterface, InterpreterInterface
 {
     private $interpreter;
 
@@ -232,6 +232,17 @@ class RuleEvaluator implements RuleVisitorInterface
     public function context(ContextExpression $contextExpression)
     {
         return $this->interpreter->context($contextExpression);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function withContext(\ArrayAccess $context = null)
+    {
+        $copy = clone $this;
+        $copy->interpreter = $copy->interpreter->withContext($context);
+
+        return $this;
     }
 
     /**
