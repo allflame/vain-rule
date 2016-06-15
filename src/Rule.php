@@ -8,9 +8,8 @@
 
 namespace Vain\Rule;
 
+use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
-use Vain\Expression\Visitor\VisitorInterface;
-use Vain\Rule\Visitor\RuleVisitorInterface;
 
 class Rule implements RuleInterface
 {
@@ -20,10 +19,10 @@ class Rule implements RuleInterface
 
     /**
      * Rule constructor.
-     * @param $name
-     * @param ExpressionInterface $expression
+     * @param string $name
+     * @param BooleanExpressionInterface $expression
      */
-    public function __construct($name, ExpressionInterface $expression)
+    public function __construct($name, BooleanExpressionInterface $expression)
     {
         $this->name = $name;
         $this->expression = $expression;
@@ -46,30 +45,18 @@ class Rule implements RuleInterface
     }
 
     /**
-     * @param RuleVisitorInterface $visitor
+     * @inheritDoc
      */
-    public function accept(VisitorInterface $visitor)
+    public function interpret(\ArrayAccess $context = null)
     {
-        return $visitor->rule($this);
+        return $this->expression->interpret($context);
     }
 
     /**
      * @inheritDoc
      */
-    public function serialize()
+    public function __toString()
     {
-        return json_encode(['name' => $this->name, 'expression' => serialize($this->expression)]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        $serializedData = json_decode($serialized);
-        $this->name = $serializedData->name;
-        $this->expression = unserialize($serializedData->expression);
-
-        return $this;
+        return sprintf('[%s]: %s', $this->name, $this->expression);
     }
 }
