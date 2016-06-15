@@ -58,6 +58,6 @@ class Rule implements RuleInterface
      */
     public function __toString()
     {
-        return sprintf('[%s]: %s', $this->name, $this->expression);
+        return sprintf('(%s) as %s', $this->name, $this->expression);
     }
 }
