@@ -17,9 +17,7 @@
     "require": {
         "php": ">=5.6.0",
         "vain/logger" : "dev-dev",
-        "vain/expression" : "dev-dev",
-        "vain/data" : "dev-dev",
-        "vain/comparator" : "dev-dev"
+        "vain/expression" : "dev-dev"
     },
     "repositories": [
         {
