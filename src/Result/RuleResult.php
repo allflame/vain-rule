@@ -68,6 +68,6 @@ class RuleResult implements BooleanResultInterface
      */
     public function __toString()
     {
-        return sprintf('[%s]: %s', $this->rule->getName(), $this->result);
+        return sprintf('%s: %s', $this->rule->getName(), $this->result);
     }
 }
