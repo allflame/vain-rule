@@ -1,4 +1,0 @@
-services:
-    rule.evaluator:
-        class: Vain\Rule\Evaluator\Evaluator
-        arguments: ['@expression.interpreter']
