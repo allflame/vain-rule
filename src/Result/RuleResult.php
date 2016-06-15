@@ -8,11 +8,10 @@
 
 namespace Vain\Rule\Result;
 
-use Vain\Expression\Result\ExpressionResultInterface;
-use Vain\Expression\Visitor\VisitorInterface;
+use Vain\Expression\Boolean\Result\BooleanResultInterface;
 use Vain\Rule\RuleInterface;
 
-class RuleResult implements ExpressionResultInterface
+class RuleResult implements BooleanResultInterface
 {
     private $rule;
 
@@ -21,12 +20,12 @@ class RuleResult implements ExpressionResultInterface
     /**
      * RuleResult constructor.
      * @param RuleInterface $rule
-     * @param ExpressionResultInterface $expressionResult
+     * @param BooleanResultInterface $result
      */
-    public function __construct(RuleInterface $rule, ExpressionResultInterface $expressionResult)
+    public function __construct(RuleInterface $rule, BooleanResultInterface $result)
     {
         $this->rule = $rule;
-        $this->result = $expressionResult;
+        $this->result = $result;
     }
 
     /**
@@ -59,36 +58,16 @@ class RuleResult implements ExpressionResultInterface
     /**
      * @inheritDoc
      */
+    public function interpret(\ArrayAccess $context = null)
+    {
+        return $this;
+    }
+
+    /**
+     * @inheritDoc
+     */
     public function __toString()
     {
-        return $this->result->__toString();
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function accept(VisitorInterface $visitor)
-    {
-        return $this->result->accept($visitor);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function serialize()
-    {
-        return json_encode(['rule' => serialize($this->rule), 'result' => serialize($this->result)]);
-    }
-
-    /**
-     * @inheritDoc
-     */
-    public function unserialize($serialized)
-    {
-        $serializedData = json_decode($serialized);
-        $this->rule = unserialize($serializedData->rule);
-        $this->result = unserialize($serializedData->result);
-
-        return $this;
+        return sprintf('[%s]: %s', $this->rule->getName(), $this->result);
     }
 }

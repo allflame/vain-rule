@@ -10,6 +10,7 @@ namespace Vain\Rule;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
+use Vain\Rule\Result\RuleResult;
 
 class Rule implements RuleInterface
 {
@@ -49,7 +50,7 @@ class Rule implements RuleInterface
      */
     public function interpret(\ArrayAccess $context = null)
     {
-        return $this->expression->interpret($context);
+        return new RuleResult($this, $this->expression->interpret($context));
     }
 
     /**
