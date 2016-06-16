@@ -76,8 +76,6 @@ class RuleResult implements BooleanResultInterface
      */
     public function toArray()
     {
-        return ['rule_result', ['rule' => $this->rule->toArray(), 'result' => $this->result->toArray()]];
+        return ['rule_result' => ['rule' => $this->rule->toArray(), 'result' => $this->result->toArray()]];
     }
-
-
 }

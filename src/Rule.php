@@ -66,6 +66,6 @@ class Rule implements RuleInterface
      */
     public function toArray()
     {
-        return ['rule', ['name' => $this->name, 'expression' => $this->expression->toArray()]];
+        return ['rule' => ['name' => $this->name, 'expression' => $this->expression->toArray()]];
     }
 }
