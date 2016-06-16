@@ -8,7 +8,6 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-
 namespace Vain\Rule\Result;
 
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
@@ -27,7 +26,8 @@ class RuleResult implements BooleanResultInterface
 
     /**
      * RuleResult constructor.
-     * @param RuleInterface $rule
+     *
+     * @param RuleInterface          $rule
      * @param BooleanResultInterface $result
      */
     public function __construct(RuleInterface $rule, BooleanResultInterface $result)

@@ -8,7 +8,6 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-
 namespace Vain\Rule;
 
 use Vain\Expression\Boolean\BooleanExpressionInterface;

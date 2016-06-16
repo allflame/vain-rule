@@ -8,7 +8,6 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
-
 namespace Vain\Rule\Result;
 
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
@@ -20,5 +19,4 @@ use Vain\Expression\Boolean\Result\BooleanResultInterface;
  */
 interface RuleResultInterface extends BooleanResultInterface
 {
-
 }
