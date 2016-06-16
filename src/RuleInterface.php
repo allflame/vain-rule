@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/10/16
- * Time: 9:41 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 
 namespace Vain\Rule;
@@ -11,6 +14,11 @@ namespace Vain\Rule;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
 
+/**
+ * Interface RuleInterface
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 interface RuleInterface extends BooleanExpressionInterface
 {
     /**

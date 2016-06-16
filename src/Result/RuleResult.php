@@ -1,9 +1,12 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: allflame
- * Date: 6/10/16
- * Time: 9:41 AM
+ * Vain Framework
+ *
+ * PHP Version 7
+ *
+ * @package   vain-expression
+ * @license   https://opensource.org/licenses/MIT MIT License
+ * @link      https://github.com/allflame/vain-expression
  */
 
 namespace Vain\Rule\Result;
@@ -11,6 +14,11 @@ namespace Vain\Rule\Result;
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
 use Vain\Rule\RuleInterface;
 
+/**
+ * Class RuleResult
+ *
+ * @author Taras P. Girnyk <taras.p.gyrnik@gmail.com>
+ */
 class RuleResult implements BooleanResultInterface
 {
     private $rule;
