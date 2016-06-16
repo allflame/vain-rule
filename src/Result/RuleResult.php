@@ -70,4 +70,14 @@ class RuleResult implements BooleanResultInterface
     {
         return sprintf('%s: %s', $this->rule->getName(), $this->result);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['rule_result', ['rule' => $this->rule->toArray(), 'result' => $this->result->toArray()]];
+    }
+
+
 }

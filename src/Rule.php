@@ -60,4 +60,12 @@ class Rule implements RuleInterface
     {
         return sprintf('(%s) as %s', $this->name, $this->expression);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function toArray()
+    {
+        return ['rule', ['name' => $this->name, 'expression' => $this->expression->toArray()]];
+    }
 }
