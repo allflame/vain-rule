@@ -5,7 +5,7 @@
     {
       "name": "Taras Girnyk",
       "email": "taras.p.gyrnik@gmail.com",
-      "homepage": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-rule",
+      "homepage": "https://github.com/allflame/vain-rule",
       "role": "Developer"
     }
   ],
@@ -21,11 +21,11 @@
   "repositories": [
     {
       "type": "git",
-      "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-core.git"
+      "url": "https://github.com/allflame/vain-core"
     },
     {
       "type": "git",
-      "url": "http://gitlab.cosmonova.net.ua/mmjitsu/vain-expression.git"
+      "url": "https://github.com/allflame/vain-expression"
     }
   ],
   "config": {
