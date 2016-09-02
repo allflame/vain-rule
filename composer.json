@@ -16,7 +16,7 @@
     },
     "require": {
         "php": ">=7.0",
-        "vain/expression": "dev-dev"
+        "vain/expression": "^0.2"
     },
     "repositories": [
         {
