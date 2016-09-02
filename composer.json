@@ -1,32 +1,32 @@
 {
-  "name": "vain/rule",
-  "type": "shared-package",
-  "authors": [
-    {
-      "name": "Taras Girnyk",
-      "email": "taras.p.gyrnik@gmail.com",
-      "homepage": "https://github.com/allflame/vain-rule",
-      "role": "Developer"
-    }
-  ],
-  "autoload": {
-    "psr-4": {
-      "Vain\\Rule\\": "src/"
-    }
-  },
-  "require": {
-    "php": ">=5.6.0",
-    "vain/expression": "dev-dev"
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "http://78.47.118.217"
-    }
-  ],
-  "config": {
-    "secure-http": false
-  },
-  "prefer-stable": true,
-  "minimum-stability": "dev"
+    "name": "vain/rule",
+    "type": "shared-package",
+    "authors": [
+        {
+            "name": "Taras Girnyk",
+            "email": "taras.p.gyrnik@gmail.com",
+            "homepage": "https://github.com/allflame/vain-rule",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Vain\\Rule\\": "src/"
+        }
+    },
+    "require": {
+        "php": ">=7.0",
+        "vain/expression": "dev-dev"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "http://78.47.118.217"
+        }
+    ],
+    "config": {
+        "secure-http": false
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }
