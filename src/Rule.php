@@ -8,8 +8,11 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types=1);
+
 namespace Vain\Rule;
 
+use Vain\Core\Result\ResultInterface;
 use Vain\Expression\Boolean\BooleanExpressionInterface;
 use Vain\Expression\ExpressionInterface;
 use Vain\Rule\Result\RuleResult;
@@ -31,7 +34,7 @@ class Rule implements RuleInterface
      * @param string                     $name
      * @param BooleanExpressionInterface $expression
      */
-    public function __construct($name, BooleanExpressionInterface $expression)
+    public function __construct(string $name, BooleanExpressionInterface $expression)
     {
         $this->name = $name;
         $this->expression = $expression;
@@ -40,7 +43,7 @@ class Rule implements RuleInterface
     /**
      * @inheritDoc
      */
-    public function getName()
+    public function getName() : string
     {
         return $this->name;
     }
@@ -48,7 +51,7 @@ class Rule implements RuleInterface
     /**
      * @return ExpressionInterface
      */
-    public function getExpression()
+    public function getExpression() : ExpressionInterface
     {
         return $this->expression;
     }
@@ -56,7 +59,7 @@ class Rule implements RuleInterface
     /**
      * @inheritDoc
      */
-    public function interpret(\ArrayAccess $context = null)
+    public function interpret(\ArrayAccess $context = null) : ResultInterface
     {
         return new RuleResult($this, $this->expression->interpret($context));
     }
@@ -64,7 +67,7 @@ class Rule implements RuleInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('(%s) as %s', $this->name, $this->expression);
     }
@@ -72,7 +75,7 @@ class Rule implements RuleInterface
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['rule' => ['name' => $this->name, 'expression' => $this->expression->toArray()]];
     }
