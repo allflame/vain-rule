@@ -8,8 +8,11 @@
  * @license   https://opensource.org/licenses/MIT MIT License
  * @link      https://github.com/allflame/vain-expression
  */
+declare(strict_types=1);
+
 namespace Vain\Rule\Result;
 
+use Vain\Core\Result\ResultInterface;
 use Vain\Expression\Boolean\Result\BooleanResultInterface;
 use Vain\Rule\RuleInterface;
 
@@ -39,7 +42,7 @@ class RuleResult implements BooleanResultInterface
     /**
      * @inheritDoc
      */
-    public function isSuccessful()
+    public function isSuccessful() : bool
     {
         return $this->result->isSuccessful();
     }
@@ -47,7 +50,7 @@ class RuleResult implements BooleanResultInterface
     /**
      * @inheritDoc
      */
-    public function getStatus()
+    public function getStatus() : bool
     {
         return $this->result->getStatus();
     }
@@ -55,7 +58,7 @@ class RuleResult implements BooleanResultInterface
     /**
      * @inheritDoc
      */
-    public function invert()
+    public function invert() : ResultInterface
     {
         $copy = clone $this;
         $this->result = $copy->result->invert();
@@ -66,7 +69,7 @@ class RuleResult implements BooleanResultInterface
     /**
      * @inheritDoc
      */
-    public function interpret(\ArrayAccess $context = null)
+    public function interpret(\ArrayAccess $context = null) : ResultInterface
     {
         return $this;
     }
@@ -74,7 +77,7 @@ class RuleResult implements BooleanResultInterface
     /**
      * @inheritDoc
      */
-    public function __toString()
+    public function __toString() : string
     {
         return sprintf('%s: %s', $this->rule->getName(), $this->result);
     }
@@ -82,7 +85,7 @@ class RuleResult implements BooleanResultInterface
     /**
      * @inheritDoc
      */
-    public function toArray()
+    public function toArray() : array
     {
         return ['rule_result' => ['rule' => $this->rule->toArray(), 'result' => $this->result->toArray()]];
     }
